@@ -24,7 +24,7 @@ import {
 import "./App.css";
 
 const IP_API = "https://ipapi.co/json";
-const DB_API = window.location.hostname === 'localhost' ? "http://localhost:5000/markers" : "";
+const DB_API = window.location.hostname === 'localhost' ? "http://localhost:5000/markers" : "https://joule-maps-api.herokuapp.com/markers";
 
 var greenIcon = L.icon({
   iconUrl: gIcon,
