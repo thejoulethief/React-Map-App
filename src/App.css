@@ -13,10 +13,34 @@ body {
 }
 
 .carder {
+  width: 20rem;
+  height: 25rem;
   position: absolute !important;
   display: initial !important;
   z-index: 999;
   margin: 10px;
   top: 0;
   right: 0;
+}
+
+.hide {
+  position: absolute !important;
+  display: initial !important;
+  z-index: 999;
+  margin: 10px;
+  top: 0;
+  right: 0;
+}
+
+.author {
+  position: absolute !important;
+  display: initial !important;
+  z-index: 999;
+  margin: 10px;
+  bottom: 0;
+  right: left;
+}
+
+.author button {
+  display: inline-block;
 }
