@@ -8,6 +8,8 @@ import gIcon from "./leaf-green.png";
 import rIcon from "./leaf-red.png";
 import shadow from "./leaf-shadow.png";
 
+import react from './react.png';
+
 import {
   Card,
   CardText,
@@ -22,7 +24,7 @@ import {
 import "./App.css";
 
 const IP_API = "https://ipapi.co/json";
-const DB_API = "http://localhost:5000/markers";
+const DB_API = window.location.hostname === 'localhost' ? "http://localhost:5000/markers" : "";
 
 var greenIcon = L.icon({
   iconUrl: gIcon,
@@ -102,6 +104,7 @@ class App extends Component {
       body: JSON.stringify(pin),
       headers: { "Content-Type": "application/json" }
     }).then(resp => console.log(resp));
+    window.location.reload()
   };
 
   getPins = () => {
@@ -130,9 +133,6 @@ class App extends Component {
     this.setState({ [event.target.id]: event.target.value });
   };
 
-  hideBtn = event => {
-    this.setState({ notHidden: false });
-  };
 
   render() {
     const position = [this.state.lat, this.state.lng];
@@ -185,6 +185,7 @@ class App extends Component {
                   type="text"
                   id="name"
                   placeholder="Enter your name!"
+                  required
                 />
               </FormGroup>
               <FormGroup>
@@ -194,6 +195,7 @@ class App extends Component {
                   type="textarea"
                   id="message"
                   placeholder="Enter your message!"
+                  required
                 />
               </FormGroup>
               <Button color="info" type="submit">
@@ -222,15 +224,13 @@ class App extends Component {
             </Card>
           )}
         <Card className="author">
-          <em>
-            Made by
-            <a
-              href="http://thejoulethief.github.io"
-              rel="noopener noreferrer"
-              target="_blank"
-            > Anupam
+          <img src={react} className="image" alt="React logo"></img>
+          <a
+            href="http://thejoulethief.github.io"
+            rel="noopener noreferrer"
+            target="_blank"
+          > Anupam🐱‍💻
           </a>
-          </em>
 
         </Card>
       </div>

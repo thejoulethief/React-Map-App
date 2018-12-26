@@ -33,14 +33,23 @@ body {
 }
 
 .author {
+  color: #53C1DE;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   position: absolute !important;
-  display: initial !important;
+  height: 3em;
+  width: 9em;
   z-index: 999;
   margin: 10px;
   bottom: 0;
   right: left;
+  padding: 0.5em;
+  
 }
 
-.author button {
-  display: inline-block;
+.image{
+  height: 100%;
+  padding: 0 !important;
+ 
 }
