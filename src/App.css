@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
+
 body {
   margin: 0px;
   width: 100vw;
@@ -6,10 +9,11 @@ body {
 
 #root {
   height: 100%;
+
 }
 
 .map {
-  height: 100vh;
+  height: 94vh;
 }
 
 .carder {
@@ -19,7 +23,7 @@ body {
   display: initial !important;
   z-index: 999;
   margin: 10px;
-  top: 0;
+  top: 6.5vh;
   right: 0;
 }
 
@@ -27,10 +31,18 @@ body {
   position: absolute !important;
   display: initial !important;
   z-index: 999;
-  margin: 10px;
+  margin: 0.3rem;
   top: 0;
   right: 0;
 }
+  .zoom {
+    position: absolute !important;
+    display: initial !important;
+    z-index: 999;
+    margin: 0.3rem;
+    top: 0;
+    right: 4.2rem;
+  }
 
 .author {
   color: #53C1DE;
@@ -39,7 +51,7 @@ body {
   flex-wrap: wrap;
   position: absolute !important;
   height: 3em;
-  width: 9em;
+  width: 10rem;
   z-index: 999;
   margin: 10px;
   bottom: 0;
@@ -52,4 +64,17 @@ body {
   height: 100%;
   padding: 0 !important;
  
+}
+
+.title{
+  
+
+  height: 6vh;
+}
+
+.emoji{
+  font-family: 'Righteous', cursive;
+  font-size: 5.7vmin;
+  
+
 }

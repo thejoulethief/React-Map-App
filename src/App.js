@@ -3,12 +3,13 @@
 import React, { Component } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-
 import gIcon from "./leaf-green.png";
 import rIcon from "./leaf-red.png";
 import shadow from "./leaf-shadow.png";
 
 import react from './react.png';
+
+import Title from './title';
 
 import {
   Card,
@@ -20,8 +21,10 @@ import {
   CardTitle,
   Button
 } from "reactstrap";
-
 import "./App.css";
+
+
+
 
 const IP_API = "https://ipapi.co/json";
 const DB_API = window.location.hostname === 'localhost' ? "http://localhost:5000/markers" : "https://joule-maps-api.herokuapp.com/markers";
@@ -52,10 +55,11 @@ class App extends Component {
   state = {
     lat: 0,
     lng: 0,
-    zoom: 2.3,
+    zoom: 2.6,
     set: false,
     notHidden: true,
-    messages: []
+    messages: [],
+    submitted: false
   };
 
   componentDidMount = () => {
@@ -64,7 +68,6 @@ class App extends Component {
         this.setState({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
-          zoom: 13,
           set: true
         });
       },
@@ -82,7 +85,6 @@ class App extends Component {
             this.setState({
               lat: location1.latitude,
               lng: location1.longitude,
-              zoom: 13,
               set: true
             });
           });
@@ -137,14 +139,15 @@ class App extends Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <div className="map">
+      <div className="">
+        <Title />
         {" "}
         <Map className="map" center={position} zoom={this.state.zoom}>
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {this.state.set ? (
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+          {(this.state.set && !this.state.submitted) ? (
             <Marker position={position} icon={redIcon}>
               <Popup>Your location!</Popup>
             </Marker>
@@ -172,57 +175,60 @@ class App extends Component {
             </Marker>
           ))}
         </Map>
-        {this.state.notHidden ? (
-          <Card className="carder" body>
-            <CardTitle>Welcome! 🗺</CardTitle>
-            <CardText>Leave a pin telling me where you visited from!</CardText>
 
-            <Form onSubmit={this.handleSubmit}>
-              <FormGroup>
-                <Label for="name">Name</Label>
-                <Input
-                  onChange={this.handleChange}
-                  type="text"
-                  id="name"
-                  placeholder="Enter your name!"
-                  required
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="message">Message</Label>
-                <Input
-                  onChange={this.handleChange}
-                  type="textarea"
-                  id="message"
-                  placeholder="Enter your message!"
-                  required
-                />
-              </FormGroup>
-              <Button color="info" type="submit">
-                Post!
+        {
+          this.state.notHidden ? (
+            <Card className="carder" body>
+              <CardTitle>Welcome! 🗺</CardTitle>
+              <CardText>Leave a pin telling me where you visited from!</CardText>
+
+              <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                  <Label for="name">Name</Label>
+                  <Input
+                    onChange={this.handleChange}
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name!"
+                    required
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="message">Message</Label>
+                  <Input
+                    onChange={this.handleChange}
+                    type="textarea"
+                    id="message"
+                    placeholder="Enter your message!"
+                    required
+                  />
+                </FormGroup>
+                <Button color="info" type="submit">
+                  Post!
               </Button>
-              <Button
-                color="link"
-                type="button"
-                onClick={() => {
-                  this.setState({ notHidden: false });
-                }}
-              >
-                Hide
+                <Button
+                  color="link"
+                  type="button"
+                  onClick={() => {
+                    this.setState({ notHidden: false });
+                  }}
+                >
+                  Hide
               </Button>
-            </Form>
-          </Card>
-        ) : (
-            <Card className="hide">
-              <Button
-                color="link"
-                type="button"
-                onClick={() => this.setState({ notHidden: true })}
-              >
-                Unhide
-            </Button>
+              </Form>
             </Card>
-          )}
+          ) : (
+              <Card className="hide">
+                <Button
+                  color="link"
+                  type="button"
+                  onClick={() => this.setState({ notHidden: true })}
+                >
+                  Post
+            </Button>
+              </Card>
+            )
+        }
         <Card className="author">
           <img src={react} className="image" alt="React logo"></img>
           <a
@@ -233,7 +239,17 @@ class App extends Component {
           </a>
 
         </Card>
-      </div>
+        <Card className="zoom">
+          <Button
+
+            color="link"
+            type="button"
+            onClick={() => this.setState({ zoom: 2.5 })}
+          >
+            Zoom out
+            </Button>
+        </Card>
+      </div >
     );
   }
 }

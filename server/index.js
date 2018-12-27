@@ -70,4 +70,4 @@ app.get("/markers", function (req, res) {
   });
 });
 
-app.listen(5000 | process.env.PORT);
+app.listen(5000 || process.env.PORT);
