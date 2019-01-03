@@ -20,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.connect(
-  "mongodb://thejoulethief:macaroni123@ds143614.mlab.com:43614/maps",
+  "mongodb://",
   { useNewUrlParser: true }
 );
 
